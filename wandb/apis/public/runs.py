@@ -109,6 +109,7 @@ class Runs(Paginator):
             "entity": self.entity,
             "order": self.order,
             "filters": json.dumps(self.filters),
+            "perPage": per_page
         }
         super().__init__(client, variables, per_page)
 
