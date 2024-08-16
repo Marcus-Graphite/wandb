@@ -62,6 +62,16 @@ class Paginator:
         self.objects.extend(self.convert_objects())
         return True
 
+    def load_page_without_converting_object(self):
+        # adding mirrored function that only gets run information
+        if not self.more:
+            return False
+        self.update_variables()
+        self.last_response = self.client.execute(
+            self.QUERY, variable_values=self.variables
+        )
+        return True
+
     def __getitem__(self, index):
         loaded = True
         stop = index.stop if isinstance(index, slice) else index
